@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Browser"
         mc:Ignorable="d"
-        Title="AddBookmarksWindow" Height="150" Width="300">
+        Title="AddBookmarksWindow" WindowStyle="SingleBorderWindow" Height="150" Width="300" MinHeight="150" MaxHeight="150" MinWidth="300" MaxWidth="300">
     
         <Grid >
         
@@ -25,24 +25,24 @@
         </Grid.ColumnDefinitions>
        
 
-        <Viewbox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" >
-            <TextBlock Text="Добавление закладки"></TextBlock>
-        </Viewbox>
+        <Border HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" >
+            <TextBlock Text="Добавление закладки" FontSize="20"></TextBlock>
+        </Border>
 
-        <Viewbox Grid.Column="0" Grid.Row="1">
-            <TextBlock>Имя</TextBlock>
-        </Viewbox>
+        <Border Grid.Column="0" Grid.Row="1">
+            <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">Имя</TextBlock>
+        </Border>
 
-        <TextBox Name="NameTB" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1"></TextBox>
+        <TextBox Name="NameTB" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Margin="5"></TextBox>
 
-        <Viewbox Grid.Column="0" Grid.Row="2">
-            <TextBlock>URl</TextBlock>
-        </Viewbox>
+        <Border HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2">
+            <TextBlock FontSize="20">URl</TextBlock>
+        </Border>
 
-        <TextBox Name="URLTB" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2"></TextBox>
+        <TextBox Name="URLTB" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2" Margin="5"></TextBox>
 
-        <Button Click="Cancel_Click" Grid.Row="3" Grid.Column="1" Name="Cancel">Отменить</Button>
-        <Button Click="OK_Click" Grid.Row="3" Grid.Column="3" Name="OK">Готово</Button>
+        <Button Click="Cancel_Click" Grid.Row="3" Grid.Column="1" Name="Cancel" Margin="5">Отменить</Button>
+        <Button Click="OK_Click" Grid.Row="3" Grid.Column="3" Name="OK" Margin="5">Готово</Button>
        
     </Grid>
     </Window>

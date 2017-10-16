@@ -49,3 +49,10 @@ D:\Study\ШАГ\С#\New\WPF\Browser\Browser\bin\Debug\awesomium_process
 D:\Study\ШАГ\С#\New\WPF\Browser\Browser\bin\Debug\inspector.pak
 D:\Study\ШАГ\С#\New\WPF\Browser\Browser\bin\Debug\xinput9_1_0.dll
 D:\Study\ШАГ\С#\New\WPF\Browser\Browser\obj\Debug\Browser_Content.g.cs
+D:\Study\ШАГ\С#\New\WPF\Browser\Browser\bin\Debug\HtmlAgilityPack.dll
+D:\Study\ШАГ\С#\New\WPF\Browser\Browser\bin\Debug\HtmlAgilityPack.pdb
+D:\Study\ШАГ\С#\New\WPF\Browser\Browser\bin\Debug\HtmlAgilityPack.xml
+D:\Study\ШАГ\С#\New\WPF\Browser\Browser\obj\Debug\SettingWindow.g.cs
+D:\Study\ШАГ\С#\New\WPF\Browser\Browser\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Study\ШАГ\С#\New\WPF\Browser\Browser\obj\Debug\App.baml
+D:\Study\ШАГ\С#\New\WPF\Browser\Browser\obj\Debug\SettingWindow.baml

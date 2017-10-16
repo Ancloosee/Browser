@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<BrowserL xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Bookmarks>
+    <Bookmark>
+      <URL>http://mixpromo.co/search/%D0%96%D0%B5%D0%BA%D0%B0+%D0%9A%D0%A2%D0%BE+%D0%A2%D0%90%D0%9C+%5B%D0%93%D0%A0%D0%A3%D0%97%5D</URL>
+      <Header>http://mixpromo.co/search/%D0%96%D0%B5%D0%BA%D0%B0+%D0%9A%D0%A2%D0%BE+%D0%A2%D0%90%D0%9C+%5B%D0%93%D0%A0%D0%A3%D0%97%5D</Header>
+    </Bookmark>
+    <Bookmark>
+      <URL>https://mychords.net/vlny/79223-vlny-privet.html</URL>
+      <Header>VLNY - Привет, аккорды, текст, mp3, видео</Header>
+    </Bookmark>
+  </Bookmarks>
+  <History>
+    <History>
+      <URL>https://www.google.com.ua/search?q=+прив</URL>
+      <Header>прив - Пошук Google</Header>
+    </History>
+    <History>
+      <URL>https://www.google.com.ua/search?q=+Привет+как+твои+дела</URL>
+      <Header>Привет как твои дела - Пошук Google</Header>
+    </History>
+    <History>
+      <URL>https://mychords.net/vlny/79223-vlny-privet.html</URL>
+      <Header>VLNY - Привет, аккорды, текст, mp3, видео</Header>
+    </History>
+    <History>
+      <URL>https://mychords.net/vlny/79223-vlny-privet.html</URL>
+      <Header>VLNY - Привет, аккорды, текст, mp3, видео</Header>
+    </History>
+  </History>
+  <IsSaveHistory>true</IsSaveHistory>
+</BrowserL>

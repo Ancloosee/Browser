@@ -19,11 +19,17 @@ namespace Browser
     /// </summary>
     public partial class AddBookmarksWindow : Window
     {
-        public AddBookmarksWindow(string URL)
+        public AddBookmarksWindow(string URL,string Name=null)
         {
             InitializeComponent();
-            this.NameTB.Text = URL;
             this.URLTB.Text = URL;
+
+            if (Name == null)
+                this.NameTB.Text = URL;
+            else
+                this.NameTB.Text = Name;
+
+           
         }
 
         private void OK_Click(object sender, RoutedEventArgs e)

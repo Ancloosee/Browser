@@ -16,6 +16,7 @@ using Google.Apis.Services;
 using Google.Apis;
 using Google.API.Search;
 using Awesomium.Windows.Controls;
+using HtmlAgilityPack;
 
 namespace Browser
 {
@@ -27,61 +28,12 @@ namespace Browser
         public MainWindow()
         {
             InitializeComponent();
-            menuBookmarks.ItemsSource = BrowserL.GEtInstatce().Bookmarks;
-            menuBookmarks.DisplayMemberPath = "Header";
-           
-
-
-            menuHistory.ItemsSource = BrowserL.GEtInstatce().History;
-            menuHistory.DisplayMemberPath = "Header";
-            
-
-
-            
         }
 
-        private void Go_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                ((WebBrowser)((TabItem) TabControls.Items[TabControls.SelectedIndex]).Content).Navigate(AdressTextBox.Text);
-            }
-            catch(Exception ex)
-            {
-                string response = "https://www.google.com.ua/search?q=";
-                 string[] TMP = AdressTextBox.Text.Split(",. ".ToCharArray());
-                foreach (string v in TMP)
-                    response += "+" + v;
-                ((WebBrowser)((TabItem)TabControls.Items[TabControls.SelectedIndex]).Content).Navigate(response);   
-            }
-        }
+       
 
-        private void RefreshButton_Click(object sender, RoutedEventArgs e)
-        {
-            Browser.Refresh();
-        }
-
-        private void GoBackButton_Click(object sender, RoutedEventArgs e)
-        {
-            if(Browser.CanGoBack)
-            {
-                Browser.GoBack();
-            }
-        }
-
-        private void GoForward_Click(object sender, RoutedEventArgs e)
-        {
-            if(Browser.CanGoForward)
-            {
-                Browser.GoForward();
-            }
-        }
-
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-         
-        }
-
+      
+        //add new Tab
         private void AddButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
             
@@ -93,7 +45,7 @@ namespace Browser
 
             TabControls.SelectedIndex = TabControls.Items.Count-2;
         }
-
+        //remove Tab when RightMouseClick
         private void removeTab(object sender, MouseButtonEventArgs e)
         {
             
@@ -101,18 +53,39 @@ namespace Browser
             if(!cheklastFocus())
                 TabControls.SelectedIndex = TabControls.Items.Count - 2;
         }
-
-        private void writeHistory(object sender, NavigationEventArgs e)
+        //for chek focus in last element
+        private bool cheklastFocus()
         {
-            string URL = ((WebBrowser)sender).Source.ToString();
-            string Header= ((WebBrowser)sender).Source.AbsoluteUri;
-            BrowserL.GEtInstatce().AddHistory(new History(URL, Header));
+            if (TabControls.SelectedIndex == TabControls.Items.Count - 1)
+            {
+                return false;
+            }
+            else
+                return true;
         }
 
+
+        //for write history
+        private void writeHistory(object sender, NavigationEventArgs e)
+        {
+
+            if (BrowserL.GEtInstatce().IsSaveHistory)
+            {
+                string URL = ((WebBrowser)sender).Source.ToString();
+                HtmlAgilityPack.HtmlWeb web = new HtmlWeb();
+                HtmlAgilityPack.HtmlDocument doc = web.Load(URL);
+                HtmlNode node = doc.DocumentNode.SelectNodes(@"//title")[0];
+
+                string Header = node.InnerText;
+                BrowserL.GEtInstatce().AddHistory(new History(URL, Header));
+            }
+        }
+        //for GO when EnterPress
         private void AdressTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
+
                 try
                 {
                     ((WebBrowser)((TabItem)TabControls.Items[TabControls.SelectedIndex]).Content).Navigate(AdressTextBox.Text);
@@ -123,30 +96,12 @@ namespace Browser
 
                     string response = "https://www.google.com.ua/search?q=";
                     string[] TMP = AdressTextBox.Text.Split(",. ".ToCharArray());
-
                     foreach (string v in TMP)
                         response += "+" + v;
-
                     ((WebBrowser)((TabItem)TabControls.Items[TabControls.SelectedIndex]).Content).Navigate(response);
 
                 }
             }
-        }
-
-        private void Bookmarks_Click(object sender, RoutedEventArgs e)
-        {
-
-           AddBookmarksWindow win= new AddBookmarksWindow(((WebBrowser)((TabItem)TabControls.Items[TabControls.SelectedIndex]).Content).Source.ToString());
-            win.Show();           
-        }
-        private bool cheklastFocus()
-        {
-            if (TabControls.SelectedIndex == TabControls.Items.Count-1)
-            {
-                return false;
-            }
-            else
-                return true;
         }
 
         private void menuBookmarks_Click(object sender, RoutedEventArgs e)
@@ -158,5 +113,77 @@ namespace Browser
         {
             ((WebBrowser)((TabItem)TabControls.Items[TabControls.SelectedIndex]).Content).Navigate(((History)((MenuItem)e.OriginalSource).DataContext).URL);
         }
+
+        //effects for button
+        private void Border_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ((Border)sender).Opacity = 0.5;
+        }
+        private void Border_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ((Border)sender).Opacity = 1;
+        }
+        
+        //Bokmarks
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                string path = ((WebBrowser)((TabItem)TabControls.Items[TabControls.SelectedIndex]).Content).Source.ToString();
+                HtmlAgilityPack.HtmlWeb web = new HtmlWeb();
+                HtmlAgilityPack.HtmlDocument doc = web.Load(path);
+                HtmlNode node = doc.DocumentNode.SelectNodes(@"//title")[0];
+                AddBookmarksWindow win = new AddBookmarksWindow(path,node.InnerText);
+                win.Show();
+            }
+            catch(NullReferenceException ex)
+            {
+
+            }
+        }
+        //GoForward
+        private void GOForwardButton_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Browser.CanGoForward)
+           {
+               Browser.GoForward();
+           }
+        }
+        //GoBack
+        private void GoBackButton_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Browser.CanGoBack)
+            {
+                Browser.GoBack();
+            }
+        }
+        //Refresh
+        private void RefreshButton_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Browser.Refresh();
+        }
+        //GO
+        private void GoButton_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+            try
+            {
+                ((WebBrowser)((TabItem)TabControls.Items[TabControls.SelectedIndex]).Content).Navigate(AdressTextBox.Text);
+            }
+            catch (Exception ex)
+            {
+                string response = "https://www.google.com.ua/search?q=";
+                string[] TMP = AdressTextBox.Text.Split(",. ".ToCharArray());
+                foreach (string v in TMP)
+                    response += "+" + v;
+                ((WebBrowser)((TabItem)TabControls.Items[TabControls.SelectedIndex]).Content).Navigate(response);
+            }
+        }
+
+        private void menuSetting_Click(object sender, RoutedEventArgs e)
+        {
+            new SettingWindow().Show();
+        }
     }
 }
+

@@ -13,11 +13,11 @@
         </Grid.RowDefinitions>
         
         
-            <Border Grid.Row="0"   Background="White">
+    <Border Grid.Row="0"   Background="White">
 
-           
+
             <Grid >
-                
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -28,108 +28,79 @@
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                
-                <Border Grid.Column="0" Margin="3">
+                <!--GoButton-->
+                <Border Name="GoButton" Grid.Column="0" Margin="3" MinHeight="20" MinWidth="30" MouseDown="GoButton_MouseDown" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
                     <Border.Background>
                         <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\go.png"></ImageBrush>
                     </Border.Background>
-                    
-                    <Button Name="GO" Click="Go_Click" Background="Transparent" MinHeight="20" MinWidth="30">
-                        
-                    </Button>
                 </Border>
-
-                <Border Grid.Column="1" Margin="3">
+                <!--RefreshButton-->
+                <Border Name="RefreshButton" Grid.Column="1" Margin="3" MinHeight="20" MinWidth="30" MouseDown="RefreshButton_MouseDown" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" >
                     <Border.Background>
                         <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\refresh.png"></ImageBrush>
                     </Border.Background>
-
-                    <Button Name="Refresh" Click="RefreshButton_Click" Background="Transparent" MinHeight="20" MinWidth="30">
-
-                    </Button>
                 </Border>
-
-                <Border Grid.Column="2" Margin="3">
+                <!--GoBackButton-->
+                <Border Name="GoBackButton" Grid.Column="2" Margin="3" MinHeight="20" MinWidth="30" MouseDown="GoBackButton_MouseDown" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
                     <Border.Background>
                         <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\forward.png"></ImageBrush>
                     </Border.Background>
-
-                    <Button Click="GoBackButton_Click" Name="Back" Background="Transparent" MinHeight="20" MinWidth="30">
-
-                    </Button>
                 </Border>
-
-
-                <Border  Grid.Column="3" Margin="3">
+                <!--GoForwardButton-->
+                <Border Name="GOForwardButton" MinHeight="20" MinWidth="30"  Grid.Column="3" Margin="3" MouseDown="GOForwardButton_MouseDown" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
                     <Border.Background>
                         <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\back.png"></ImageBrush>
                     </Border.Background>
-
-                    <Button  Click="GoForward_Click" Name="Forward" Background="Transparent" MinHeight="20" MinWidth="30">
-
-                    </Button>
                 </Border>
+                <!--AdressTextBox-->
                 <Border Grid.Column="4">
-
-
-                    <TextBox Height="7" KeyDown="AdressTextBox_KeyDown" Name="AdressTextBox" Background="Transparent" MinHeight="20" MinWidth="30">
-
-                    </TextBox>
+                    <TextBox Height="7" KeyDown="AdressTextBox_KeyDown" Name="AdressTextBox" Background="Transparent" MinHeight="20" MinWidth="30"></TextBox>
                 </Border>
-
-                <Border Grid.Column="5" Margin="3">
+                <!--BookmarksButtom-->
+                <Border Name="BookmarksButton" Grid.Column="5" Margin="1" MouseDown="Border_MouseDown" MinHeight="20" MinWidth="30" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
                     <Border.Background>
                         <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\bookmark.png"></ImageBrush>
                     </Border.Background>
-
-                    <Button Name="Bookmarks" Click="Bookmarks_Click"  Background="Transparent" MinHeight="20" MinWidth="30">
-
-                    </Button>
                 </Border>
 
-                <!--<Border Grid.Column="6" Margin="3">
+                <Border Grid.Column="6" Padding="3" MinHeight="20" MinWidth="30" >
                     <Border.Background>
-                        <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\setting.png">
-                            
-                        </ImageBrush>
-                    </Border.Background>-->
-                <Border Grid.Column="6" Padding="3">
-                <Menu MinHeight="20" MinWidth="20">
-                    <MenuItem Padding="11" >
-                        <MenuItem.Background>
-                            <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\setting.png">
-                            </ImageBrush>
-                        </MenuItem.Background>
+                        <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\setting.png"></ImageBrush>
+                    </Border.Background>
 
 
-                            <MenuItem Name="menuBookmarks" Header="Закладки" MenuItem.Click="menuBookmarks_Click" ></MenuItem>
-                        <MenuItem Name="menuHistory" Header="История" MenuItem.Click="menuHistory_Click"></MenuItem>
-                        
-                        
-                        
+                    <Menu Background="Transparent">
+                        <MenuItem Name="Menu" Padding="11"  >
+                            <MenuItem   Name="menuBookmarks" Header="Закладки" MenuItem.Click="menuBookmarks_Click"  ItemsSource="{Binding Source={StaticResource MyBrowser}, Path=Bookmarks}" DisplayMemberPath="Header">
+                                <MenuItem.Icon >
+                                    <Image Source="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\bookmark.png"></Image>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem  Name="menuHistory" Header="История" ItemsSource="{Binding Source={StaticResource MyBrowser},Path=History}" DisplayMemberPath="Header" MenuItem.Click="menuHistory_Click">
+                                <MenuItem.Icon >
+                                    <Image Source="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\history.png"></Image>
+                                </MenuItem.Icon>
+                            </MenuItem>
+                            <MenuItem  Name="menuSetting" Header="Настройки" Click="menuSetting_Click">
+                                <MenuItem.Icon >
+                                    <Image Source="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\setting.png"></Image>
+                                </MenuItem.Icon>
+                            </MenuItem>
                         </MenuItem>
-    
                     </Menu>
                 </Border>
-
             </Grid>
-            
-
-        </Border>
-        
+     </Border>
 
 
 
 
-        <TabControl SelectionChanged="TabControl_SelectionChanged" Name="TabControls" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5">
+
+        <TabControl  Name="TabControls" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5">
             <TabItem Name="Page1" Header="Вкладка 1">
-                <WebBrowser Name="Browser" Navigated="writeHistory">
-                    
-                </WebBrowser>
+                <WebBrowser Name="Browser" Navigated="writeHistory"></WebBrowser>
             </TabItem>
-
             <TabItem Name="AddButton" MouseLeftButtonUp="AddButton_MouseDown" Header="+" ></TabItem>
         </TabControl>
-    
     </Grid>
 </Window>

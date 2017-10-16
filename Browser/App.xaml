@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:Browser"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ObjectDataProvider x:Key="MyBrowser" ObjectType="{x:Type local:BrowserL}" MethodName="GEtInstatce"></ObjectDataProvider>
     </Application.Resources>
 </Application>
