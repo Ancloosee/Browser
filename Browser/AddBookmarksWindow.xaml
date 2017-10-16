@@ -1,0 +1,48 @@
+﻿<Window x:Class="Browser.AddBookmarksWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Browser"
+        mc:Ignorable="d"
+        Title="AddBookmarksWindow" Height="150" Width="300">
+    
+        <Grid >
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+           
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            
+        </Grid.ColumnDefinitions>
+       
+
+        <Viewbox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" >
+            <TextBlock Text="Добавление закладки"></TextBlock>
+        </Viewbox>
+
+        <Viewbox Grid.Column="0" Grid.Row="1">
+            <TextBlock>Имя</TextBlock>
+        </Viewbox>
+
+        <TextBox Name="NameTB" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1"></TextBox>
+
+        <Viewbox Grid.Column="0" Grid.Row="2">
+            <TextBlock>URl</TextBlock>
+        </Viewbox>
+
+        <TextBox Name="URLTB" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2"></TextBox>
+
+        <Button Click="Cancel_Click" Grid.Row="3" Grid.Column="1" Name="Cancel">Отменить</Button>
+        <Button Click="OK_Click" Grid.Row="3" Grid.Column="3" Name="OK">Готово</Button>
+       
+    </Grid>
+    </Window>
