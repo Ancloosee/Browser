@@ -22,6 +22,7 @@ namespace Browser
         public SettingWindow()
         {
             InitializeComponent();
+            this.StyleComboBox.SelectedIndex = BrowserL.GEtInstatce().styleList.IndexOf(BrowserL.GEtInstatce().CurrentTheme.Replace(@"Themes/", String.Empty).Replace(".xaml", String.Empty));
         }
 
         private void ClearHIstoryButton_Click(object sender, RoutedEventArgs e)
@@ -30,5 +31,21 @@ namespace Browser
                 BrowserL.GEtInstatce().History.Clear();
             
         }
+
+        private void StyleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // BrowserL.GEtInstatce().CurrentTheme = ((ComboBoxItem)StyleComboBox.SelectedItem).Content.ToString();
+            BrowserL.GEtInstatce().CurrentTheme = ((string)StyleComboBox.SelectedItem);
+
+
+            ResourceDictionary resourceDict = Application.LoadComponent(new Uri(BrowserL.GEtInstatce().CurrentTheme,UriKind.Relative)) as ResourceDictionary;
+            // очищаем коллекцию ресурсов приложения
+            
+            // добавляем загруженный словарь ресурсов
+            Application.Current.Resources.MergedDictionaries.Add(resourceDict);
+
+        }
+
+        
     }
 }

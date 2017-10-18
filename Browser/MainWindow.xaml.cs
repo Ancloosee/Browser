@@ -28,6 +28,9 @@ namespace Browser
         public MainWindow()
         {
             InitializeComponent();
+            Browser.Source = new Uri("https://www.google.com.ua/");
+            ResourceDictionary resourceDict = Application.LoadComponent(new Uri(BrowserL.GEtInstatce().CurrentTheme, UriKind.Relative)) as ResourceDictionary;
+            Application.Current.Resources.MergedDictionaries.Add(resourceDict);
         }
 
        
@@ -36,19 +39,14 @@ namespace Browser
         //add new Tab
         private void AddButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            
-            TabControls.Items.Insert(TabControls.Items.Count - 1, new TabItem() { Header = "Вкладка " + Convert.ToString(TabControls.Items.Count), Content = new WebBrowser() { } }  );
-            ((WebBrowser)((TabItem)TabControls.Items[TabControls.Items.Count - 2]).Content).Navigated += writeHistory;
-            
+            TabControls.Items.Insert(TabControls.Items.Count - 1, new TabItem(){ Header = "Вкладка " + Convert.ToString(TabControls.Items.Count), Content = new WebBrowser() { Source=new Uri("https://www.google.com.ua/")}, Style = ((TabItem)TabControls.Items[0]).Style }  );
+            ((WebBrowser)((TabItem)TabControls.Items[TabControls.Items.Count - 2]).Content).Navigated += Browsernavigated;
             ((TabItem)TabControls.Items[TabControls.Items.Count - 2]).MouseRightButtonDown += removeTab;
-
-
             TabControls.SelectedIndex = TabControls.Items.Count-2;
         }
         //remove Tab when RightMouseClick
         private void removeTab(object sender, MouseButtonEventArgs e)
         {
-            
             TabControls.Items.RemoveAt(TabControls.SelectedIndex);
             if(!cheklastFocus())
                 TabControls.SelectedIndex = TabControls.Items.Count - 2;
@@ -57,35 +55,32 @@ namespace Browser
         private bool cheklastFocus()
         {
             if (TabControls.SelectedIndex == TabControls.Items.Count - 1)
-            {
                 return false;
-            }
             else
                 return true;
         }
 
 
-        //for write history
-        private void writeHistory(object sender, NavigationEventArgs e)
+        private string GetTitle()
         {
+            return ((dynamic)((WebBrowser)((TabItem)TabControls.Items[TabControls.SelectedIndex]).Content).Document).Title;
+        }
 
+        //for write history
+        private void Browsernavigated(object sender, NavigationEventArgs e)
+        {
             if (BrowserL.GEtInstatce().IsSaveHistory)
             {
                 string URL = ((WebBrowser)sender).Source.ToString();
-                HtmlAgilityPack.HtmlWeb web = new HtmlWeb();
-                HtmlAgilityPack.HtmlDocument doc = web.Load(URL);
-                HtmlNode node = doc.DocumentNode.SelectNodes(@"//title")[0];
-
-                string Header = node.InnerText;
-                BrowserL.GEtInstatce().AddHistory(new History(URL, Header));
+                BrowserL.GEtInstatce().AddHistory(new History(URL, GetTitle()));
             }
+             ((TabItem)TabControls.Items[TabControls.SelectedIndex]).Header = GetTitle();
         }
         //for GO when EnterPress
         private void AdressTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-
                 try
                 {
                     ((WebBrowser)((TabItem)TabControls.Items[TabControls.SelectedIndex]).Content).Navigate(AdressTextBox.Text);
@@ -93,11 +88,12 @@ namespace Browser
                 }
                 catch (Exception ex)
                 {
-
                     string response = "https://www.google.com.ua/search?q=";
                     string[] TMP = AdressTextBox.Text.Split(",. ".ToCharArray());
+
                     foreach (string v in TMP)
                         response += "+" + v;
+
                     ((WebBrowser)((TabItem)TabControls.Items[TabControls.SelectedIndex]).Content).Navigate(response);
 
                 }
@@ -130,10 +126,7 @@ namespace Browser
             try
             {
                 string path = ((WebBrowser)((TabItem)TabControls.Items[TabControls.SelectedIndex]).Content).Source.ToString();
-                HtmlAgilityPack.HtmlWeb web = new HtmlWeb();
-                HtmlAgilityPack.HtmlDocument doc = web.Load(path);
-                HtmlNode node = doc.DocumentNode.SelectNodes(@"//title")[0];
-                AddBookmarksWindow win = new AddBookmarksWindow(path,node.InnerText);
+                AddBookmarksWindow win = new AddBookmarksWindow(path,GetTitle());
                 win.Show();
             }
             catch(NullReferenceException ex)
@@ -144,23 +137,24 @@ namespace Browser
         //GoForward
         private void GOForwardButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (Browser.CanGoForward)
-           {
-               Browser.GoForward();
-           }
+            if (((WebBrowser)((TabItem)TabControls.Items[TabControls.SelectedIndex]).Content).CanGoForward)
+            {
+                ((WebBrowser)((TabItem)TabControls.Items[TabControls.SelectedIndex]).Content).GoForward();
+            }
         }
         //GoBack
         private void GoBackButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (Browser.CanGoBack)
+            if (((WebBrowser)((TabItem)TabControls.Items[TabControls.SelectedIndex]).Content).CanGoBack)
             {
-                Browser.GoBack();
+                ((WebBrowser)((TabItem)TabControls.Items[TabControls.SelectedIndex]).Content).GoBack();
             }
         }
         //Refresh
         private void RefreshButton_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Browser.Refresh();
+           // Browser.Refresh();
+            ((WebBrowser)((TabItem)TabControls.Items[TabControls.SelectedIndex]).Content).Refresh();
         }
         //GO
         private void GoButton_MouseDown(object sender, MouseButtonEventArgs e)

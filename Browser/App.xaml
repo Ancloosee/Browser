@@ -4,6 +4,15 @@
              xmlns:local="clr-namespace:Browser"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        
         <ObjectDataProvider x:Key="MyBrowser" ObjectType="{x:Type local:BrowserL}" MethodName="GEtInstatce"></ObjectDataProvider>
+
+        <!--<ResourceDictionary x:Key="Resourse">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/DarkTheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Themes/StandartTheme.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>-->
+
     </Application.Resources>
 </Application>

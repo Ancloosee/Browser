@@ -8,7 +8,7 @@
         Title="SettingWindow" Height="400" Width="450" ResizeMode="NoResize">
     
     
-    <Grid ShowGridLines="True">
+    <Grid >
 
         
         
@@ -43,8 +43,9 @@
         <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         <CheckBox IsChecked="{ Binding  Source={StaticResource MyBrowser},Path=IsSaveHistory,Mode=TwoWay}" Name="SaveHIstoryCB" Grid.Column="0 " Grid.RowSpan="2" Grid.ColumnSpan="3" Grid.Row="2" Margin="3" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Сохранять историю" FontSize="12"></CheckBox>
         <Button Click="ClearHIstoryButton_Click" Name="ClearHIstoryButton" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="2" Grid.Row="2" Margin="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="12">Очистить историю</Button>
-        
-
+        <TextBlock Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15">Темы</TextBlock>
+     
+        <ComboBox  Name="StyleComboBox" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="5" Margin="3" SelectionChanged="StyleComboBox_SelectionChanged"  ItemsSource="{Binding Source={StaticResource MyBrowser}, Path=styleList}"  ></ComboBox>
 
 
 

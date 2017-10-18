@@ -1,0 +1,80 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Browser.Themes">
+
+    <Style x:Key="MainGridStyle" TargetType="Grid">
+        <Setter Property="Background" Value="Gray"></Setter>
+    </Style>
+    <Style x:Key="WindowBackGroundStyle" TargetType="Window">
+        <Setter Property="Background" Value="Gray"></Setter>
+    </Style>
+    <Style x:Key="TabControlStyle" TargetType="TabControl">
+        <Setter Property="Background" Value="Gray"></Setter>
+    </Style>
+    <Style x:Key="TabItemStyle" TargetType="TabItem">
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="Gray"></Setter>
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+            </Trigger>
+            <Trigger Property="IsSelected" Value="False">
+                <Setter Property="Background" Value="Gray"></Setter>
+                <Setter Property="FontWeight" Value="Normal"></Setter>
+            </Trigger>
+        </Style.Triggers>
+
+
+    </Style>
+    <Style x:Key="GoButtonStyle" TargetType="Border">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\DarkTheme\Go.png"></ImageBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="RefreshButtonStyle" TargetType="Border">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\DarkTheme\refresh.png"></ImageBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="GoBackButtonStyle" TargetType="Border">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\DarkTheme\back.png"></ImageBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="GoForwardButtonStyle" TargetType="Border">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\DarkTheme\forward.png"></ImageBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="BookmarkButtonStyle" TargetType="Border">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\DarkTheme\bookmark.png"></ImageBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="SettingButtonStyle" TargetType="Border">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\DarkTheme\setting.png"></ImageBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="HistoryButtonStyle" TargetType="Border">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\DarkTheme\history.png"></ImageBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="WindodwStyle" TargetType="Window">
+        <Setter Property="Background" Value="White"></Setter>
+    </Style>
+</ResourceDictionary>

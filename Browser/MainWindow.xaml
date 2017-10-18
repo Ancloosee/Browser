@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Browser"
         mc:Ignorable="d"
-        Title="ЖекаБраузер" Height="350" Width="525">
+        Title="ЖекаБраузер" Height="350" Width="525"
+        Style="{DynamicResource WindowBackGroundStyle}">
+
     <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" MinHeight="30"></RowDefinition>
@@ -16,7 +18,7 @@
     <Border Grid.Row="0"   Background="White">
 
 
-            <Grid >
+            <Grid Style="{DynamicResource MainGridStyle}" >
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -29,46 +31,42 @@
                 </Grid.ColumnDefinitions>
 
                 <!--GoButton-->
-                <Border Name="GoButton" Grid.Column="0" Margin="3" MinHeight="20" MinWidth="30" MouseDown="GoButton_MouseDown" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
-                    <Border.Background>
+                <Border Style="{DynamicResource GoButtonStyle}" Name="GoButton" Grid.Column="0" Margin="3" MinHeight="20" MinWidth="30" MouseDown="GoButton_MouseDown" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
+                    <!--<Border.Background>
                         <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\go.png"></ImageBrush>
-                    </Border.Background>
+                    </Border.Background>-->
                 </Border>
                 <!--RefreshButton-->
-                <Border Name="RefreshButton" Grid.Column="1" Margin="3" MinHeight="20" MinWidth="30" MouseDown="RefreshButton_MouseDown" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" >
-                    <Border.Background>
+                <Border Style="{DynamicResource RefreshButtonStyle}" Name="RefreshButton" Grid.Column="1" Margin="3" MinHeight="20" MinWidth="30" MouseDown="RefreshButton_MouseDown" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" >
+                    <!--<Border.Background>
                         <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\refresh.png"></ImageBrush>
-                    </Border.Background>
+                    </Border.Background>-->
                 </Border>
                 <!--GoBackButton-->
-                <Border Name="GoBackButton" Grid.Column="2" Margin="3" MinHeight="20" MinWidth="30" MouseDown="GoBackButton_MouseDown" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
-                    <Border.Background>
+                <Border Style="{DynamicResource GoBackButtonStyle}" Name="GoBackButton" Grid.Column="2" Margin="3" MinHeight="20" MinWidth="30" MouseDown="GoBackButton_MouseDown" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
+                    <!--<Border.Background>
                         <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\forward.png"></ImageBrush>
-                    </Border.Background>
+                    </Border.Background>-->
                 </Border>
                 <!--GoForwardButton-->
-                <Border Name="GOForwardButton" MinHeight="20" MinWidth="30"  Grid.Column="3" Margin="3" MouseDown="GOForwardButton_MouseDown" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
-                    <Border.Background>
+                <Border Style="{DynamicResource GoForwardButtonStyle}" Name="GOForwardButton" MinHeight="20" MinWidth="30"  Grid.Column="3" Margin="3" MouseDown="GOForwardButton_MouseDown" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
+                    <!--<Border.Background>
                         <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\back.png"></ImageBrush>
-                    </Border.Background>
+                    </Border.Background>-->
                 </Border>
                 <!--AdressTextBox-->
                 <Border Grid.Column="4">
                     <TextBox Height="7" KeyDown="AdressTextBox_KeyDown" Name="AdressTextBox" Background="Transparent" MinHeight="20" MinWidth="30"></TextBox>
                 </Border>
                 <!--BookmarksButtom-->
-                <Border Name="BookmarksButton" Grid.Column="5" Margin="1" MouseDown="Border_MouseDown" MinHeight="20" MinWidth="30" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
-                    <Border.Background>
+                <Border Style="{DynamicResource BookmarkButtonStyle}" Name="BookmarksButton" Grid.Column="5" Margin="1" MouseDown="Border_MouseDown" MinHeight="20" MinWidth="30" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
+                    <!--<Border.Background>
                         <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\bookmark.png"></ImageBrush>
-                    </Border.Background>
+                    </Border.Background>-->
                 </Border>
 
-                <Border Grid.Column="6" Padding="3" MinHeight="20" MinWidth="30" >
-                    <Border.Background>
-                        <ImageBrush ImageSource="D:\Study\ШАГ\С#\New\WPF\Browser\Browser\UIElement\setting.png"></ImageBrush>
-                    </Border.Background>
-
-
+                <Border Style="{DynamicResource SettingButtonStyle}" Grid.Column="6" Padding="3" MinHeight="20" MinWidth="30"  >
+                    
                     <Menu Background="Transparent">
                         <MenuItem Name="Menu" Padding="11"  >
                             <MenuItem   Name="menuBookmarks" Header="Закладки" MenuItem.Click="menuBookmarks_Click"  ItemsSource="{Binding Source={StaticResource MyBrowser}, Path=Bookmarks}" DisplayMemberPath="Header">
@@ -96,9 +94,9 @@
 
 
 
-        <TabControl  Name="TabControls" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5">
-            <TabItem Name="Page1" Header="Вкладка 1">
-                <WebBrowser Name="Browser" Navigated="writeHistory"></WebBrowser>
+        <TabControl Style="{DynamicResource TabControlStyle}"   Name="TabControls" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5">
+            <TabItem    Style="{DynamicResource TabItemStyle}"  Name="Page1" Header="Вкладка 1">
+                <WebBrowser  Name="Browser" Navigated="Browsernavigated"></WebBrowser>
             </TabItem>
             <TabItem Name="AddButton" MouseLeftButtonUp="AddButton_MouseDown" Header="+" ></TabItem>
         </TabControl>

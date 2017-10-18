@@ -56,3 +56,5 @@ D:\Study\ШАГ\С#\New\WPF\Browser\Browser\obj\Debug\SettingWindow.g.cs
 D:\Study\ШАГ\С#\New\WPF\Browser\Browser\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\Study\ШАГ\С#\New\WPF\Browser\Browser\obj\Debug\App.baml
 D:\Study\ШАГ\С#\New\WPF\Browser\Browser\obj\Debug\SettingWindow.baml
+D:\Study\ШАГ\С#\New\WPF\Browser\Browser\obj\Debug\Themes\DarkTheme.baml
+D:\Study\ШАГ\С#\New\WPF\Browser\Browser\obj\Debug\Themes\StandartTheme.baml
